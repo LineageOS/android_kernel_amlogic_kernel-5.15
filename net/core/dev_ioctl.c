@@ -21,6 +21,7 @@
  *	match.  --pb
  */
 
+#ifndef CONFIG_AMLOGIC_ZAPPER_NET_CUT
 static int dev_ifname(struct net *net, struct ifreq *ifr)
 {
 	ifr->ifr_name[IFNAMSIZ-1] = 0;
@@ -435,6 +436,7 @@ void dev_load(struct net *net, const char *name)
 		request_module("%s", name);
 }
 EXPORT_SYMBOL(dev_load);
+#endif
 
 /*
  *	This function handles all "interface"-type I/O control requests. The actual
@@ -457,14 +459,17 @@ EXPORT_SYMBOL(dev_load);
 int dev_ioctl(struct net *net, unsigned int cmd, struct ifreq *ifr,
 	      void __user *data, bool *need_copyout)
 {
+#ifndef CONFIG_AMLOGIC_ZAPPER_NET_CUT
 	int ret;
+#endif
 	char *colon;
 
 	if (need_copyout)
 		*need_copyout = true;
+#ifndef CONFIG_AMLOGIC_ZAPPER_NET_CUT
 	if (cmd == SIOCGIFNAME)
 		return dev_ifname(net, ifr);
-
+#endif
 	ifr->ifr_name[IFNAMSIZ-1] = 0;
 
 	colon = strchr(ifr->ifr_name, ':');
@@ -476,6 +481,7 @@ int dev_ioctl(struct net *net, unsigned int cmd, struct ifreq *ifr,
 	 */
 
 	switch (cmd) {
+#ifndef CONFIG_AMLOGIC_ZAPPER_NET_CUT
 	case SIOCGIFHWADDR:
 		dev_load(net, ifr->ifr_name);
 		ret = dev_get_mac_address(&ifr->ifr_hwaddr, net, ifr->ifr_name);
@@ -530,6 +536,7 @@ int dev_ioctl(struct net *net, unsigned int cmd, struct ifreq *ifr,
 		if (colon)
 			*colon = ':';
 		return ret;
+#endif
 
 	/*
 	 *	These ioctl calls:
@@ -565,6 +572,7 @@ int dev_ioctl(struct net *net, unsigned int cmd, struct ifreq *ifr,
 		if (!ns_capable(net->user_ns, CAP_NET_ADMIN))
 			return -EPERM;
 		fallthrough;
+#ifndef CONFIG_AMLOGIC_ZAPPER_NET_CUT
 	case SIOCBONDSLAVEINFOQUERY:
 	case SIOCBONDINFOQUERY:
 		dev_load(net, ifr->ifr_name);
@@ -574,6 +582,7 @@ int dev_ioctl(struct net *net, unsigned int cmd, struct ifreq *ifr,
 		if (need_copyout)
 			*need_copyout = false;
 		return ret;
+#endif
 
 	case SIOCGIFMEM:
 		/* Get the per device memory space. We can add this but
@@ -588,6 +597,7 @@ int dev_ioctl(struct net *net, unsigned int cmd, struct ifreq *ifr,
 	 *	Unknown or private ioctl.
 	 */
 	default:
+#ifndef CONFIG_AMLOGIC_ZAPPER_NET_CUT
 		if (cmd == SIOCWANDEV ||
 		    cmd == SIOCGHWTSTAMP ||
 		    (cmd >= SIOCDEVPRIVATE &&
@@ -598,6 +608,7 @@ int dev_ioctl(struct net *net, unsigned int cmd, struct ifreq *ifr,
 			rtnl_unlock();
 			return ret;
 		}
+#endif
 		return -ENOTTY;
 	}
 }
