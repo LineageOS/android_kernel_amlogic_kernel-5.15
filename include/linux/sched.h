@@ -1513,6 +1513,12 @@ struct task_struct {
 		unsigned	user_dumpable:1;
 		});
 
+#if IS_ENABLED(CONFIG_AMLOGIC_MEMORY_OPT) && IS_ENABLED(CONFIG_AMLOGIC_DEBUG)
+	unsigned long long android_kabi_reserved2;
+	unsigned long long android_kabi_reserved3;
+	unsigned long long android_kabi_reserved4;
+	unsigned long long android_kabi_reserved5;
+#else
 	ANDROID_KABI_RESERVE(2);
 	ANDROID_KABI_RESERVE(3);
 	ANDROID_KABI_RESERVE(4);
@@ -1520,6 +1526,7 @@ struct task_struct {
 	ANDROID_KABI_RESERVE(6);
 	ANDROID_KABI_RESERVE(7);
 	ANDROID_KABI_RESERVE(8);
+#endif
 
 	/*
 	 * New fields for task_struct should be added above here, so that
