@@ -61,6 +61,9 @@
 #include "mmc_ops.h"
 #include "quirks.h"
 #include "sd_ops.h"
+#ifdef CONFIG_AMLOGIC_DTS_PARTITION
+#include "../../../common_drivers/drivers/mmc/host/mmc_dtb.h"
+#endif
 
 MODULE_ALIAS("mmc:block");
 #ifdef MODULE_PARAM_PREFIX
@@ -3025,6 +3028,10 @@ static int mmc_blk_probe(struct mmc_card *card)
 	ret = mmc_blk_alloc_parts(card, md);
 	if (ret)
 		goto out;
+
+#ifdef CONFIG_AMLOGIC_DTS_PARTITION
+	aml_emmc_partition_ops(card, md->disk);
+#endif
 
 	/* Add two debugfs entries */
 	mmc_blk_add_debugfs(card, md);
