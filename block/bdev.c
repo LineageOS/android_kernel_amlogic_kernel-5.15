@@ -506,6 +506,10 @@ struct block_device *bdev_alloc(struct gendisk *disk, u8 partno)
 	return bdev;
 }
 
+#ifdef CONFIG_AMLOGIC_DTS_PARTITION
+EXPORT_SYMBOL_GPL(bdev_alloc);
+#endif
+
 void bdev_add(struct block_device *bdev, dev_t dev)
 {
 	bdev->bd_dev = dev;
@@ -513,6 +517,10 @@ void bdev_add(struct block_device *bdev, dev_t dev)
 	bdev->bd_inode->i_ino = dev;
 	insert_inode_hash(bdev->bd_inode);
 }
+
+#ifdef CONFIG_AMLOGIC_DTS_PARTITION
+EXPORT_SYMBOL_GPL(bdev_add);
+#endif
 
 long nr_blockdev_pages(void)
 {
