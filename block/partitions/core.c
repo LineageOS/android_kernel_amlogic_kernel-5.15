@@ -281,6 +281,10 @@ struct device_type part_type = {
 	.uevent		= part_uevent,
 };
 
+#ifdef CONFIG_AMLOGIC_DTS_PARTITION
+EXPORT_SYMBOL_GPL(part_type);
+#endif
+
 static void delete_partition(struct block_device *part)
 {
 	lockdep_assert_held(&part->bd_disk->open_mutex);
@@ -547,6 +551,10 @@ void blk_drop_partitions(struct gendisk *disk)
 	xa_for_each_start(&disk->part_tbl, idx, part, 1)
 		delete_partition(part);
 }
+
+#ifdef CONFIG_AMLOGIC_DTS_PARTITION
+EXPORT_SYMBOL_GPL(blk_drop_partitions);
+#endif
 
 static bool blk_add_partition(struct gendisk *disk,
 		struct parsed_partitions *state, int p)
