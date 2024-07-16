@@ -272,6 +272,18 @@ out:
 	return err == -ENOENT ? NULL : err ? ERR_PTR(err) : inode;
 }
 
+#if IS_MODULE(CONFIG_NTFS3_FS)
+static const unsigned char fs_ftype_by_dtype[DT_MAX] = {
+	[DT_REG]	= FT_REG_FILE,
+	[DT_DIR]	= FT_DIR,
+	[DT_LNK]	= FT_SYMLINK,
+	[DT_CHR]	= FT_CHRDEV,
+	[DT_BLK]	= FT_BLKDEV,
+	[DT_FIFO]	= FT_FIFO,
+	[DT_SOCK]	= FT_SOCK,
+};
+#endif
+
 /*
  * returns false if 'ctx' if full
  */
@@ -337,7 +349,11 @@ static inline bool ntfs_dir_emit(struct ntfs_sb_info *sbi,
 	    ino != ni->mi.rno) {
 		struct inode *inode = ntfs_iget5(sbi->sb, &e->ref, NULL);
 		if (!IS_ERR_OR_NULL(inode)) {
+#if IS_MODULE(CONFIG_NTFS3_FS)
+			dt_type	= fs_ftype_to_dtype(fs_ftype_by_dtype[S_DT(inode->i_mode)]);
+#else
 			dt_type = fs_umode_to_dtype(inode->i_mode);
+#endif
 			iput(inode);
 		}
 	}
