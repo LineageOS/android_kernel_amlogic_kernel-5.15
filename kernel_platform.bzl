@@ -4,13 +4,20 @@ load("//build/bazel_common_rules/dist:dist.bzl", "copy_to_dist_dir")
 _DTC = "//prebuilts/kernel-build-tools:linux-x86/bin/dtc"
 _DTBTOOL = "//tools/dtbtool:dtbToolAmlogic"
 
+_DTB_GZIP_THRESHOLD = 200 * 1024
+_GZIP_CMD = """
+if [ "$$(stat -c%s $@)" -gt {threshold} ]; then
+    gzip -c $@ > $@.gz && mv $@.gz $@
+fi
+""".format(threshold = _DTB_GZIP_THRESHOLD)
+
 def _dtb_image(name, dtb_srcs):
     if len(dtb_srcs) == 1:
         native.genrule(
             name = name,
             srcs = dtb_srcs,
             outs = ["dtb.img"],
-            cmd = "cp -L $< $@",
+            cmd = "cp -L $< $@\n" + _GZIP_CMD,
         )
         return
 
@@ -27,7 +34,7 @@ def _dtb_image(name, dtb_srcs):
             cp -L $(SRCS) $$staging/
             $(location %s) -o $@ -p "$$(dirname $(location %s))/" $$staging
             rm -rf $$staging
-        """ % (name, _DTBTOOL, _DTC),
+        """ % (name, _DTBTOOL, _DTC) + _GZIP_CMD,
     )
 
 def amlogic_kernel_platform(
