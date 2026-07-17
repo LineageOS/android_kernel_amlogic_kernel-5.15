@@ -1,6 +1,35 @@
 load("//build/kernel/kleaf:kernel.bzl", "kernel_abi", "kernel_build", "kernel_images", "kernel_modules_install", "merged_kernel_uapi_headers")
 load("//build/bazel_common_rules/dist:dist.bzl", "copy_to_dist_dir")
 
+_DTC = "//prebuilts/kernel-build-tools:linux-x86/bin/dtc"
+_DTBTOOL = "//tools/dtbtool:dtbToolAmlogic"
+
+def _dtb_image(name, dtb_srcs):
+    if len(dtb_srcs) == 1:
+        native.genrule(
+            name = name,
+            srcs = dtb_srcs,
+            outs = ["dtb.img"],
+            cmd = "cp -L $< $@",
+        )
+        return
+
+    native.genrule(
+        name = name,
+        srcs = dtb_srcs,
+        outs = ["dtb.img"],
+        tools = [_DTBTOOL, _DTC],
+        # dtbTool only takes a directory, which it scans non-recursively for *.dtb,
+        # so gather the DTBs into a staging dir.
+        cmd = """
+            staging=$(@D)/%s/staging
+            rm -rf $$staging && mkdir -p $$staging
+            cp -L $(SRCS) $$staging/
+            $(location %s) -o $@ -p "$$(dirname $(location %s))/" $$staging
+            rm -rf $$staging
+        """ % (name, _DTBTOOL, _DTC),
+    )
+
 def amlogic_kernel_platform(
         name,
         dtb_outs,
@@ -14,6 +43,7 @@ def amlogic_kernel_platform(
     build_config = build_config or "//vendor/amlogic/kernel:build.config.{}.bazel".format(name)
     dtbo_outs = [o for o in dtb_outs if o.endswith(".dtbo")]
     dtbo_srcs = dtbo_srcs or [":{}/{}".format(name, o) for o in dtbo_outs]
+    dtb_img_srcs = [":{}/{}".format(name, o) for o in dtb_outs if o.endswith(".dtb")]
 
     kernel_build(
         name = name,
@@ -61,11 +91,17 @@ def amlogic_kernel_platform(
         kernel_modules_install = ":" + name + "_modules_install",
     )
 
+    _dtb_image(
+        name = name + "_dtb_image",
+        dtb_srcs = dtb_img_srcs,
+    )
+
     copy_to_dist_dir(
         name = name + "_dist",
         data = [
             ":" + name,
             ":" + name + "_images",
+            ":" + name + "_dtb_image",
             ":" + name + "_modules_install",
             ":" + name + "_merged_kernel_uapi_headers",
             "//vendor/amlogic/kernel:kernel_aarch64_download_or_build",
