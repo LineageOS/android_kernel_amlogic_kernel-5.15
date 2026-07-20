@@ -55,9 +55,11 @@ def amlogic_kernel_platform(
         kernel_modules = None,
         build_config = None,
         kmi_symbol_list = None,
+        gki_modules_remove = None,
         dtbo_srcs = None,
         make_goals = None):
     kernel_modules = kernel_modules or []
+    gki_modules = [m for m in get_gki_modules_list("arm64") if m not in (gki_modules_remove or [])]
     build_config = build_config or "//vendor/amlogic/kernel:build.config.{}.bazel".format(name)
     dtbo_outs = [o for o in dtb_outs if o.endswith(".dtbo")]
     dtbo_srcs = dtbo_srcs or [":{}/{}".format(name, o) for o in dtbo_outs]
@@ -76,7 +78,7 @@ def amlogic_kernel_platform(
         collect_unstripped_modules = True,
         strip_modules = True,
         module_outs = module_outs,
-        module_implicit_outs = get_gki_modules_list("arm64"),
+        module_implicit_outs = gki_modules,
         make_goals = ["Image", "Image.lz4", "modules"] +
                      ["amlogic/" + o for o in dtb_outs] + (make_goals or []),
     )
