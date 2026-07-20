@@ -1,5 +1,16 @@
 load("//build/kernel/kleaf:kernel.bzl", "kernel_abi", "kernel_build", "kernel_images", "kernel_modules_install", "merged_kernel_uapi_headers")
 load("//build/bazel_common_rules/dist:dist.bzl", "copy_to_dist_dir")
+load(":modules.bzl", "get_gki_modules_list")
+
+_IMAGE_OUTS = [
+    "Image",
+    "Image.lz4",
+    "System.map",
+    "modules.builtin",
+    "modules.builtin.modinfo",
+    "vmlinux",
+    "vmlinux.symvers",
+]
 
 _DTC = "//prebuilts/kernel-build-tools:linux-x86/bin/dtc"
 _DTBTOOL = "//tools/dtbtool:dtbToolAmlogic"
@@ -58,16 +69,16 @@ def amlogic_kernel_platform(
             "//vendor/amlogic/kernel:common_kernel_sources",
             "//vendor/amlogic/common_drivers:common_drivers_srcs",
         ],
-        outs = dtb_outs,
-        base_kernel = "//vendor/amlogic/kernel:kernel_aarch64_download_or_build",
+        outs = _IMAGE_OUTS + dtb_outs,
         build_config = build_config,
         kconfig_ext = "//vendor/amlogic/common_drivers:Kconfig.ext",
-        kmi_symbol_list = kmi_symbol_list,
         dtstree = "//vendor/amlogic/common_drivers:common_drivers_dtstree",
         collect_unstripped_modules = True,
         strip_modules = True,
         module_outs = module_outs,
-        make_goals = ["modules"] + ["amlogic/" + o for o in dtb_outs] + (make_goals or []),
+        module_implicit_outs = get_gki_modules_list("arm64"),
+        make_goals = ["Image", "Image.lz4", "modules"] +
+                     ["amlogic/" + o for o in dtb_outs] + (make_goals or []),
     )
 
     kernel_abi(
@@ -111,9 +122,6 @@ def amlogic_kernel_platform(
             ":" + name + "_dtb_image",
             ":" + name + "_modules_install",
             ":" + name + "_merged_kernel_uapi_headers",
-            "//vendor/amlogic/kernel:kernel_aarch64_download_or_build",
-            "//vendor/amlogic/kernel:kernel_aarch64_additional_artifacts_download_or_build",
-            "//vendor/amlogic/kernel:kernel_aarch64_modules",
         ],
         dist_dir = "out/{}/dist".format(name),
         flat = True,
