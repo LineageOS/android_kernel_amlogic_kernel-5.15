@@ -1,5 +1,6 @@
 load("//build/kernel/kleaf:kernel.bzl", "kernel_abi", "kernel_build", "kernel_images", "kernel_modules_install", "merged_kernel_uapi_headers")
 load("//build/bazel_common_rules/dist:dist.bzl", "copy_to_dist_dir")
+load("@bazel_skylib//rules:write_file.bzl", "write_file")
 load(":modules.bzl", "get_gki_modules_list")
 
 _IMAGE_OUTS = [
@@ -56,6 +57,7 @@ def amlogic_kernel_platform(
         build_config = None,
         kmi_symbol_list = None,
         gki_modules_remove = None,
+        system_dlkm_modules_load = None,
         dtbo_srcs = None,
         make_goals = None):
     kernel_modules = kernel_modules or []
@@ -116,15 +118,25 @@ def amlogic_kernel_platform(
         dtb_srcs = dtb_img_srcs,
     )
 
+    dist_data = [
+        ":" + name,
+        ":" + name + "_images",
+        ":" + name + "_dtb_image",
+        ":" + name + "_modules_install",
+        ":" + name + "_merged_kernel_uapi_headers",
+    ]
+
+    if system_dlkm_modules_load:
+        write_file(
+            name = name + "_system_dlkm_modules_load",
+            out = "system_dlkm.modules.load",
+            content = system_dlkm_modules_load,
+        )
+        dist_data.append(":" + name + "_system_dlkm_modules_load")
+
     copy_to_dist_dir(
         name = name + "_dist",
-        data = [
-            ":" + name,
-            ":" + name + "_images",
-            ":" + name + "_dtb_image",
-            ":" + name + "_modules_install",
-            ":" + name + "_merged_kernel_uapi_headers",
-        ],
+        data = dist_data,
         dist_dir = "out/{}/dist".format(name),
         flat = True,
         log = "info",
