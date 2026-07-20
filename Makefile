@@ -441,7 +441,8 @@ endif
 # ifdef CONFIG_AMLOGIC_DRIVER
 # config cannot be used here to mark AMLOGIC modifications
 # If these three variables are not set externally, set their default values
-export COMMON_DRIVERS_DIR ?= ../common_drivers
+export COMMON_DRIVERS_DIR ?= common_drivers
+$(if $(wildcard $(srctree)/../common_drivers),$(shell ln -sfn ../common_drivers $(srctree)/$(COMMON_DRIVERS_DIR)))
 dtstree ?= $(COMMON_DRIVERS_DIR)/arch/$(SRCARCH)/boot/dts/
 export DTC_INCLUDE ?= $(srctree)/$(COMMON_DRIVERS_DIR)/include
 # endif
@@ -713,6 +714,7 @@ ifeq ($(KBUILD_EXTMOD),)
 # Objects we will link into vmlinux / subdirs we need to visit
 core-y		:= init/ usr/ arch/$(SRCARCH)/
 drivers-y	:= drivers/ sound/
+drivers-y	+= $(patsubst $(srctree)/%,%/,$(wildcard $(srctree)/$(COMMON_DRIVERS_DIR)/drivers $(srctree)/$(COMMON_DRIVERS_DIR)/sound))
 drivers-$(CONFIG_SAMPLES) += samples/
 drivers-$(CONFIG_NET) += net/
 drivers-y	+= virt/
