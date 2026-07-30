@@ -2,6 +2,11 @@
 
 export COMMON_DRIVERS_DIR=common_drivers
 
+# Mali Bifrost GPU driver version (kvim1s = dvalin/G52). Override Makefile default r25p0.
+export GPU_DRV_VERSION=r47p0
+export GPU_TYPE=dvalin
+export GPU_ARCH=bifrost
+
 export DTC_INCLUDE="${ROOT_DIR}/${KERNEL_DIR}/../common_drivers/include"
 
 DEFCONFIG=amlogic_gki_defconfig
