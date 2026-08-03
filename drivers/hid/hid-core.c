@@ -1777,6 +1777,7 @@ int __hid_report_raw_event(struct hid_device *hid, int type, u8 *data,
 	size_t bsize = bufsize;
 	u8 *cdata = data;
 	int ret = 0;
+	bool free_cdata = false;
 
 	if (report_enum->numbered && (size < 1 || bufsize < 1)) {
 		hid_warn_ratelimited(hid,
@@ -1812,9 +1813,23 @@ int __hid_report_raw_event(struct hid_device *hid, int type, u8 *data,
 		rsize = max_buffer_size;
 
 	if (bsize < rsize) {
-		hid_warn_ratelimited(hid, "Event data for report %d was too short (%d vs %zu)\n",
-				     report->id, rsize, bsize);
-		return -EINVAL;
+		u8 *tmp;
+
+		/*
+		 * Some BT HID remotes (e.g. 0957:0001 "RemoteG20") omit
+		 * trailing unused array slots instead of sending the full
+		 * declared report. The caller's buffer is shorter than rsize,
+		 * so the zero-fill below would run past its end; copy into a
+		 * correctly sized buffer rather than dropping the event.
+		 */
+		tmp = kzalloc(rsize, GFP_ATOMIC);
+		if (!tmp)
+			return -ENOMEM;
+
+		memcpy(tmp, cdata, bsize);
+		cdata = tmp;
+		free_cdata = true;
+		csize = bsize = rsize;
 	}
 
 	if (csize < rsize) {
@@ -1828,7 +1843,7 @@ int __hid_report_raw_event(struct hid_device *hid, int type, u8 *data,
 	if (hid->claimed & HID_CLAIMED_HIDRAW) {
 		ret = hidraw_report_event(hid, data, size);
 		if (ret)
-			return ret;
+			goto out;
 	}
 
 	if (hid->claimed != HID_CLAIMED_HIDRAW && report->maxfield) {
@@ -1841,6 +1856,10 @@ int __hid_report_raw_event(struct hid_device *hid, int type, u8 *data,
 
 	if (hid->claimed & HID_CLAIMED_INPUT)
 		hidinput_report_event(hid, report);
+
+out:
+	if (free_cdata)
+		kfree(cdata);
 
 	return ret;
 }
