@@ -16,6 +16,24 @@
       "message": "defs not needed for us",
       "revId": "63f752a68bb3a007ad7c4a731099d5085ca2f202",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1b8be73_2ab61c80",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 17162
+      },
+      "writtenOn": "2026-08-04T01:24:33Z",
+      "side": 1,
+      "message": "why? Google says it used for interaction with BL30 which is used for device wakeup over IR or hdmi cec",
+      "parentUuid": "fd1c801b_2ba9da67",
+      "revId": "63f752a68bb3a007ad7c4a731099d5085ca2f202",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
