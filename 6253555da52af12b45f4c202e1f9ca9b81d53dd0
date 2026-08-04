@@ -16,6 +16,24 @@
       "message": "Think this could be dropped since we use clang",
       "revId": "6253555da52af12b45f4c202e1f9ca9b81d53dd0",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3662ab60_64238452",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2026-08-04T09:40:18Z",
+      "side": 1,
+      "message": "Well technically this is correct, the previous comment style is not valid",
+      "parentUuid": "8ea6832c_5e372472",
+      "revId": "6253555da52af12b45f4c202e1f9ca9b81d53dd0",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
