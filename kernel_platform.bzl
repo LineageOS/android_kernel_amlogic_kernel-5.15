@@ -104,6 +104,14 @@ def amlogic_kernel_platform(
         kernel_build = ":" + name,
     )
 
+    copy_to_dist_dir(
+        name = name + "_uapi_headers_dist",
+        data = [":" + name + "_merged_kernel_uapi_headers"],
+        dist_dir = "out/{}/uapi_headers_dist".format(name),
+        flat = True,
+        log = "info",
+    )
+
     kernel_images(
         name = name + "_images",
         build_dtbo = True,
