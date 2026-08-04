@@ -34,6 +34,24 @@
       "parentUuid": "fd1c801b_2ba9da67",
       "revId": "63f752a68bb3a007ad7c4a731099d5085ca2f202",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fd23460_68f2b0a1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2026-08-04T01:49:23Z",
+      "side": 1,
+      "message": "do we actually ship that freertos config?\n\nI assume this it for RTOS running backed by RT linux on AML platforms...",
+      "parentUuid": "d1b8be73_2ab61c80",
+      "revId": "63f752a68bb3a007ad7c4a731099d5085ca2f202",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
