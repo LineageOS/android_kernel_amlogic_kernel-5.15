@@ -16,6 +16,24 @@
       "message": "uncertain if needed? and defs inaccurate.",
       "revId": "64f8e12986898425b8dc81bcc289aaada956be16",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5cedb09_508d8cd2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 32674
+      },
+      "writtenOn": "2026-08-04T01:47:18Z",
+      "side": 1,
+      "message": "Can be dropped",
+      "parentUuid": "10d8dfd7_0f32b76d",
+      "revId": "64f8e12986898425b8dc81bcc289aaada956be16",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
