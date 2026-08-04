@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ea6832c_5e372472",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 32674
+      },
+      "writtenOn": "2026-08-04T01:49:51Z",
+      "side": 1,
+      "message": "Think this could be dropped since we use clang",
+      "revId": "6253555da52af12b45f4c202e1f9ca9b81d53dd0",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
