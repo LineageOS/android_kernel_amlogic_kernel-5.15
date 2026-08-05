@@ -334,6 +334,10 @@ int blk_alloc_ext_minor(void)
 	return idx;
 }
 
+#ifdef CONFIG_AMLOGIC_DTS_PARTITION
+EXPORT_SYMBOL_GPL(blk_alloc_ext_minor);
+#endif
+
 void blk_free_ext_minor(unsigned int minor)
 {
 	ida_free(&ext_devt_ida, minor);
@@ -1143,6 +1147,10 @@ struct class block_class = {
 	.name		= "block",
 	.dev_uevent	= block_uevent,
 };
+
+#ifdef CONFIG_AMLOGIC_DTS_PARTITION
+EXPORT_SYMBOL_GPL(block_class);
+#endif
 
 static char *block_devnode(struct device *dev, umode_t *mode,
 			   kuid_t *uid, kgid_t *gid)
