@@ -59,8 +59,10 @@ def amlogic_kernel_platform(
         gki_modules_remove = None,
         system_dlkm_modules_load = None,
         dtbo_srcs = None,
+        extra_image_outs = None,
         make_goals = None):
     kernel_modules = kernel_modules or []
+    extra_image_outs = extra_image_outs or []
     gki_modules = [m for m in get_gki_modules_list("arm64") if m not in (gki_modules_remove or [])]
     build_config = build_config or "//vendor/amlogic/kernel:build.config.{}.bazel".format(name)
     dtbo_outs = [o for o in dtb_outs if o.endswith(".dtbo")]
@@ -73,7 +75,7 @@ def amlogic_kernel_platform(
             "//vendor/amlogic/kernel:common_kernel_sources",
             "//vendor/amlogic/common_drivers:common_drivers_srcs",
         ],
-        outs = _IMAGE_OUTS + dtb_outs,
+        outs = _IMAGE_OUTS + extra_image_outs + dtb_outs,
         build_config = build_config,
         kconfig_ext = "//vendor/amlogic/common_drivers:Kconfig.ext",
         dtstree = "//vendor/amlogic/common_drivers:common_drivers_dtstree",
@@ -81,7 +83,7 @@ def amlogic_kernel_platform(
         strip_modules = True,
         module_outs = module_outs,
         module_implicit_outs = gki_modules,
-        make_goals = ["Image", "Image.lz4", "modules"] +
+        make_goals = ["Image", "Image.lz4", "modules"] + extra_image_outs +
                      ["amlogic/" + o for o in dtb_outs] + (make_goals or []),
     )
 
