@@ -124,8 +124,18 @@ config BROKEN_ON_SMP
 	depends on BROKEN || !SMP
 	default y
 
+config AUGMENT_ARG_LIMIT
+	bool "Raise the init argument and environment limit"
+	help
+	  Some bootloaders (e.g. on Khadas boards) hand the kernel a large
+	  number of boot parameters that no __setup() handler claims. Each
+	  one is passed on to init as an environment variable, and with the
+	  stock limit init panics with "Too many boot env vars". Say Y here
+	  to raise INIT_ENV_ARG_LIMIT to 128.
+
 config INIT_ENV_ARG_LIMIT
 	int
+	default 128 if AUGMENT_ARG_LIMIT
 	default 32 if !UML
 	default 128 if UML
 	help
