@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aba5aa26_8a7c5311",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 17162
+      },
+      "writtenOn": "2026-08-08T04:29:55Z",
+      "side": 1,
+      "message": "tested on kvim3l - device boots with dts defined partitions",
+      "revId": "76be0a54d941fdbb60d4e13b255e0e4928ff3f8c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
