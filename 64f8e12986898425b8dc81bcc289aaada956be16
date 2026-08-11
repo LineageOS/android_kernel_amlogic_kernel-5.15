@@ -70,6 +70,24 @@
       "parentUuid": "f8dc122b_44d1833c",
       "revId": "64f8e12986898425b8dc81bcc289aaada956be16",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88628980_957452f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2026-08-11T16:21:14Z",
+      "side": 1,
+      "message": "So, this would require modifying so many commits...\n\n```\nnolenjohnson@ODS-PROD:~/lineage-24/kernel/platform/kernel-5.15/vendor/amlogic$ grep -r upstream_version.h\ncommon_drivers/auto_patch/common14-5.15/common/01_env/0003-Merge-branch-android14-5.15-into-amlogic-5.15-dev-1-.patch: include/linux/upstream_version.h | 14 ++++++++++++++\ncommon_drivers/auto_patch/common14-5.15/common/01_env/0003-Merge-branch-android14-5.15-into-amlogic-5.15-dev-1-.patch: create mode 100644 include/linux/upstream_version.h\ncommon_drivers/auto_patch/common14-5.15/common/01_env/0003-Merge-branch-android14-5.15-into-amlogic-5.15-dev-1-.patch:diff --git a/include/linux/upstream_version.h b/include/linux/upstream_version.h\ncommon_drivers/auto_patch/common14-5.15/common/01_env/0003-Merge-branch-android14-5.15-into-amlogic-5.15-dev-1-.patch:+++ b/include/linux/upstream_version.h\ncommon_drivers/drivers/cpu_info/cpu_info.c:#include \u003clinux/upstream_version.h\u003e\nqca6174-driver/AIO/drivers/qcacld-new/CORE/HDD/src/wlan_hdd_cfg80211.c:#include \u003clinux/upstream_version.h\u003e\nqca6174-driver/AIO/drivers/qcacld-new/CORE/HDD/src/wlan_hdd_hostapd.c:#include \u003clinux/upstream_version.h\u003e\nnolenjohnson@ODS-PROD:~/lineage-24/kernel/platform/kernel-5.15/vendor/amlogic$ grep -r AML_KERNEL_VERSION\ncommon_drivers/auto_patch/common14-5.15/common/01_env/0003-Merge-branch-android14-5.15-into-amlogic-5.15-dev-1-.patch:AML_KERNEL_VERSION      13\ncommon_drivers/auto_patch/common14-5.15/common/01_env/0003-Merge-branch-android14-5.15-into-amlogic-5.15-dev-1-.patch:+#define AML_KERNEL_VERSION\t13\ncommon_drivers/drivers/cpu_info/cpu_info.c:\t\t  AML_KERNEL_VERSION, MERGE_DATE, UPSTREAM_VERSION, AML_PATCH_VERSION);\nkernel/include/linux/upstream_version.h:#define AML_KERNEL_VERSION\t12\nqca6174-driver/AIO/drivers/qcacld-new/CORE/HDD/src/wlan_hdd_cfg80211.c:#if AML_KERNEL_VERSION \u003e\u003d 11\nqca6174-driver/AIO/drivers/qcacld-new/CORE/HDD/src/wlan_hdd_hostapd.c:#if ( (defined (CONFIG_AMLOGIC_KERNEL_VERSION) \u0026\u0026 defined (AML_KERNEL_VERSION)) \u0026\u0026 (\\\nqca6174-driver/AIO/drivers/qcacld-new/CORE/HDD/src/wlan_hdd_hostapd.c:\t\t(CONFIG_AMLOGIC_KERNEL_VERSION \u003d\u003d 13515 \u0026\u0026 AML_KERNEL_VERSION \u003e\u003d 15)\\\nqca6174-driver/AIO/drivers/qcacld-new/CORE/HDD/src/wlan_hdd_hostapd.c:\t || (CONFIG_AMLOGIC_KERNEL_VERSION \u003d\u003d 14515 \u0026\u0026 AML_KERNEL_VERSION \u003e\u003d 12) ) )\\\nqca6174-driver/AIO/drivers/qcacld-new/CORE/HDD/src/wlan_hdd_hostapd.c:#if ( (defined (CONFIG_AMLOGIC_KERNEL_VERSION) \u0026\u0026 defined (AML_KERNEL_VERSION)) \u0026\u0026 (\\\nqca6174-driver/AIO/drivers/qcacld-new/CORE/HDD/src/wlan_hdd_hostapd.c:\t\t(CONFIG_AMLOGIC_KERNEL_VERSION \u003d\u003d 13515 \u0026\u0026 AML_KERNEL_VERSION \u003e\u003d 15)\\\nqca6174-driver/AIO/drivers/qcacld-new/CORE/HDD/src/wlan_hdd_hostapd.c:\t || (CONFIG_AMLOGIC_KERNEL_VERSION \u003d\u003d 14515 \u0026\u0026 AML_KERNEL_VERSION \u003e\u003d 12) ) )\\\n```",
+      "parentUuid": "2d3e0be4_260411d2",
+      "revId": "64f8e12986898425b8dc81bcc289aaada956be16",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ],
   "submitRequirementResults": [
