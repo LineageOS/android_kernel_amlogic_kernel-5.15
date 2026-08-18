@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ea52762_d890e716",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 17162
+      },
+      "writtenOn": "2026-08-18T12:31:51Z",
+      "side": 1,
+      "message": "related bootloadr output on kvim1s (s4)\n\nrun into bl31\nNOTICE:  BL31: start aocpu\nAOCPU: configure PMP for memory 0xf7018000 ~ 0xf7024800\nAOCPU: configure PMP end\nStarting AOCPU FreeRTOS...\nAOCPU image version\u003d\u0027vim1r-a14 e817567f050c4bea0303e9a20fec33ffe9b1da72 21:30:43 2025-02-20\u0027\nAOCPU_IRQ_SEL\u003d0x0\nAOCPU_IRQ_SEL\u003d0x0\nAOCPU_IRQ_SEL\u003d0x0\nAOCPU_IRQ_SEL\u003d0x0\n[AOCPU]: mailbox init start\n[AOCPU]: mailbox init end\n[AOCPU Led]: leds state init!\n[AOCPU Led]: Starting leds task ...",
+      "revId": "eee73534ca39e22580782ce62f01a3a385be43b7",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
