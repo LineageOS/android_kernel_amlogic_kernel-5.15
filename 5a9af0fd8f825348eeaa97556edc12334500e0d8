@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e25aaaea_5c0eaf72",
+        "filename": "build.config.kvim3.bazel",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2026-08-24T10:31:53Z",
+      "side": 1,
+      "message": "f",
+      "range": {
+        "startLine": 28,
+        "startChar": 74,
+        "endLine": 28,
+        "endChar": 75
+      },
+      "revId": "5a9af0fd8f825348eeaa97556edc12334500e0d8",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
