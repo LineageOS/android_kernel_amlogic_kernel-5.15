@@ -16,6 +16,24 @@
       "message": "radxa",
       "revId": "9b1142a84db582f593fda918b5758a510e9c3cb5",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23d4fbd1_7a6d37a3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2026-08-28T07:54:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15e7b675_b7c4a18c",
+      "revId": "9b1142a84db582f593fda918b5758a510e9c3cb5",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
