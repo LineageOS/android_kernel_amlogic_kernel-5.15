@@ -22,6 +22,30 @@
       },
       "revId": "5a9af0fd8f825348eeaa97556edc12334500e0d8",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1962ca3e_ec6e089a",
+        "filename": "build.config.kvim3.bazel",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2026-08-28T14:43:12Z",
+      "side": 1,
+      "message": "I guess we can leave kvim\u0027s existing naming.",
+      "parentUuid": "e25aaaea_5c0eaf72",
+      "range": {
+        "startLine": 28,
+        "startChar": 74,
+        "endLine": 28,
+        "endChar": 75
+      },
+      "revId": "5a9af0fd8f825348eeaa97556edc12334500e0d8",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
