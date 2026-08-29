@@ -16,6 +16,24 @@
       "message": "Do it like this instead: https://review.lineageos.org/c/LineageOS/android_kernel_amlogic_ohm-build/+/499884",
       "revId": "b7d6ecc9201bcdd989cd36220e8f8eb1be3c62cb",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63f19c9e_365bc80e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2026-08-29T01:51:12Z",
+      "side": 1,
+      "message": "Additionally goes with: https://review.lineageos.org/q/I15f90bae853b5cfc549f254c01e423ad9afdfbd3",
+      "parentUuid": "c4a46111_5f756219",
+      "revId": "b7d6ecc9201bcdd989cd36220e8f8eb1be3c62cb",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ],
   "submitRequirementResults": [
