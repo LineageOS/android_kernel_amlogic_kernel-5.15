@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4a46111_5f756219",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2026-08-29T01:22:23Z",
+      "side": 1,
+      "message": "Do it like this instead: https://review.lineageos.org/c/LineageOS/android_kernel_amlogic_ohm-build/+/499884",
+      "revId": "b7d6ecc9201bcdd989cd36220e8f8eb1be3c62cb",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
