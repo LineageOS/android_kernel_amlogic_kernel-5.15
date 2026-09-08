@@ -22,6 +22,23 @@
       },
       "revId": "af25bac9fc7c744ba8abeb13f283011ea0bd48b6",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d59ad22b_679c5b09",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2026-09-08T20:53:02Z",
+      "side": 1,
+      "message": "Also, isn\u0027t it just a matter of adding this to ueventd?\n\n# Additional firmware locations\nfirmware_directories /vendor/lib/firmware",
+      "revId": "af25bac9fc7c744ba8abeb13f283011ea0bd48b6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
