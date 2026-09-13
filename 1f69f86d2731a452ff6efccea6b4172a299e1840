@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdf39832_4261c63a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2026-09-13T11:04:31Z",
+      "side": 1,
+      "message": "This is pretty much https://github.com/khadas/linux/commit/fec58fd531ad959aabf08e2463dff14b3666197a, so cherry-picking it instead is more proper.",
+      "revId": "1f69f86d2731a452ff6efccea6b4172a299e1840",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
