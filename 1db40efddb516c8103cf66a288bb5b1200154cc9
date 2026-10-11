@@ -16,6 +16,23 @@
       "message": "Make nicepool discover the partitions",
       "revId": "1db40efddb516c8103cf66a288bb5b1200154cc9",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a3def2c_2803e45b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2026-10-11T15:31:01Z",
+      "side": 1,
+      "message": "Hold off. I want to split our modification from AML\u0027s original change.",
+      "revId": "1db40efddb516c8103cf66a288bb5b1200154cc9",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
